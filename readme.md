@@ -18,17 +18,12 @@ https://josephdubon.gitlab.io/maze-q1
 
     You could keep your indexes in data attributes in your HTML and access them through player DIV's "parentElement" property (in the case of 3B). Or you could do a little math on the player DIV's current position on the screen, relative to the start element's current position on the screen and the size of your cells (in the case of 3A).
 
-        a.
-        b.
-        c.
     3. Movement can be performed a couple different ways: In the case of 3A, change the absolute position of the player DIV. 
     
     Or, in the case of 3B, append the player DIV to the next cell DIV. 
     
     (You could use "document.querySelector()", and the CSS selector for attributes to get the next cell element by the indexes you set on it via data attributes.)
-        a.
-        b.
-        c.
+
 ### Requirements
 
     1. The player must start on the start square.
