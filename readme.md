@@ -1,8 +1,8 @@
-## Assessment Project Title
-Short project descrption can go here.
+## Assessment: Maze
+Today, you will create a JavaScript game that displays a maze, and lets the player use the cursor keys to move through it one step at a time. The maze is a 2D array of cells which are either floors (passable) or walls (impassable).
 
 ## GitLab Pages URL
-https://josephdubon.gitlab.io/PROJECT-NAME-HERE
+https://josephdubon.gitlab.io/maze-q1
 
 ### Assessment Development Plan
     1.
