@@ -4,57 +4,6 @@
 // Main project structure and flow influenced by 
 // Randy 's demos and reference code. Thank you Randy.
 
-// Model view
-
-// Tell me what key was pushed and then make that the function
-document.onkeydown = logKey
-
-// Declare variables
-let x, y, blueprint
-
-// Start keyboard arrow keys code
-
-// Give pos some data
-x = 200
-y = 200
-
-function logKey(e) {
-    // Test
-    // log.textContent += ` ${e.code}`
-    console.log(e.keyCode)
-
-    // Add gaurd clause for walls and barrier concept 
-
-    // CODE HERE MAN!
-
-    // let ArrowDown key add 10 to the x variable
-    if (e.keyCode === 40) {
-        // Test
-        console.log("arrow down")
-    }
-    // let ArrowUp key remove 10 to the x variable
-    else if (e.keyCode === 38) {
-        // Test
-        console.log("arrow up")
-        x = x - 10
-    }
-    // let ArrowLeft key add 10 to the y variable
-    else if (e.keyCode === 37) {
-        // Test
-        console.log("arrow left")
-        y = y - 10
-    }
-    // let ArrowRight key remove 10 to the y variable
-    else if (e.keyCode === 39) {
-        // Test
-        console.log("arrow right")
-        y = y + 10
-    }
-}
-
-// End keyboard arrow keys code
-
-
 // Maze ASCII intro from 
 // https://ascii.co.uk/art/maze
 
@@ -68,6 +17,11 @@ function logKey(e) {
 
 // Declare maze and DOM reference point for the maze in index.html
 const mainMazeEl = document.getElementById('maze')
+
+// Declare variables
+let x, y
+
+const blueprint = mapFromDemo
 
 // Create main maze function
 const initMaze = function (blueprint) {
@@ -99,9 +53,6 @@ const initMaze = function (blueprint) {
                 blockDivs += '<div id="startChar" class="block start"></div>'
                 x = colPos
                 y = rowPos
-
-                // Starting block position
-                currentPos = blueprint[9][0]
             }
 
             // Finish block / Create the blocks
@@ -109,12 +60,9 @@ const initMaze = function (blueprint) {
                 blockDivs += '<div class="block finish"></div>'
                 x = colPos
                 y = rowPos
-
-                // Finish block position
-                currentPos = blueprint[8][20]
             }
             // Normal block
-            else {
+            else if (blockType === ' ') {
                 blockDivs += '<div class="block"></div>'
             }
         }
@@ -129,10 +77,49 @@ const initMaze = function (blueprint) {
 // Test with mapFromDemo for simplicity
 initMaze(mapFromDemo)
 
-currentPosition =
+// Tell me what key was pushed and then make that the function
+document.onkeydown = logKey
 
-    // Update the "top" style attribute of the startChar
+// Start keyboard arrow keys code
+function logKey(e) {
+    // Test
+    // log.textContent += ` ${e.code}`
+    console.log(e.keyCode)
+
+    // let ArrowDown key add 10 to the x variable
+    if (e.keyCode === 40) {
+        // Test
+        console.log("arrow down")
+        x += 10
+        console.log(x)
+    }
+    // let ArrowUp key remove 10 to the x variable
+    else if (e.keyCode === 38) {
+        // Test
+        console.log("arrow up")
+        x += -10
+        // Test
+        console.log(x)
+    }
+    // let ArrowLeft key add 10 to the y variable
+    else if (e.keyCode === 37) {
+        // Test
+        console.log("arrow left")
+        y = y - 10
+        // Test
+        console.log(y)
+    }
+    // let ArrowRight key remove 10 to the y variable
+    else if (e.keyCode === 39) {
+        // Test
+        console.log("arrow right")
+        y = y + 10
+        // Test
+        console.log(y)
+    }
+    // Update attributes function
     document.getElementById("startChar").style.top = x + "px"
+    document.getElementById("startChar").style.left = y + "px"
+}
 
-// Update the "left" style attribute of the startChar
-// document.getElementById("startChar").style.left = posLeft + "px"
+// End keyboard arrow keys code

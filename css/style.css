@@ -35,18 +35,18 @@ header {
     box-shadow: 4px 4px rgb(64, 240, 240);
 }
 
-.block.start {
+/* .block.start {
     background-color: rgb(42, 42, 42);
     box-shadow: 4px 4px rgb(144, 144, 144);
-}
+} */
 
 .block.finish {
     background-color: rgb(204, 61, 61);
     box-shadow: 4px 4px rgb(144, 144, 144);
 }
 
-#startChar {
-    background-color: whitesmoke;
+.block#startChar {
+    background-color: rgb(255, 0, 0);
     position: relative;
     top: 0;
     left: 0;
