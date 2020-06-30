@@ -10,13 +10,13 @@
 document.onkeydown = logKey
 
 // Declare variables
-let x, y, posTop, posLeft
+let x, y, blueprint
 
 // Start keyboard arrow keys code
 
 // Give pos some data
-posTop = 200
-posLeft = 200
+x = 200
+y = 200
 
 function logKey(e) {
     // Test
@@ -27,45 +27,30 @@ function logKey(e) {
 
     // CODE HERE MAN!
 
-    // let ArrowDown key add 10 to the posTop variable
+    // let ArrowDown key add 10 to the x variable
     if (e.keyCode === 40) {
         // Test
         console.log("arrow down")
-        posTop = posTop + 10
     }
-    // let ArrowUp key remove 10 to the posTop variable
+    // let ArrowUp key remove 10 to the x variable
     else if (e.keyCode === 38) {
         // Test
         console.log("arrow up")
-        posTop = posTop - 10
+        x = x - 10
     }
-    // let ArrowLeft key add 10 to the posLeft variable
+    // let ArrowLeft key add 10 to the y variable
     else if (e.keyCode === 37) {
         // Test
         console.log("arrow left")
-        posLeft = posLeft - 10
+        y = y - 10
     }
-    // let ArrowRight key remove 10 to the posTop variable
+    // let ArrowRight key remove 10 to the y variable
     else if (e.keyCode === 39) {
         // Test
         console.log("arrow right")
-        posLeft = posLeft + 10
+        y = y + 10
     }
-
-    // Update the "top" style attribute of the startChar
-    document.getElementById("startChar").style.top = posTop + "px"
-
-    // Update the "left" style attribute of the startChar
-    document.getElementById("startChar").style.left = posLeft + "px"
-
 }
-
-
-// Update the posTop style attribute of startChar
-document.getElementById("startChar").style.top = posTop + "px"
-// Update the left style attribute of startChar
-document.getElementById("startChar").style.left = posLeft + "px"
-
 
 // End keyboard arrow keys code
 
@@ -111,16 +96,22 @@ const initMaze = function (blueprint) {
 
             // Start block / loop through each row
             else if (blockType === 'S') {
-                blockDivs += '<div class="block start"></div>'
-                y = rowPos
+                blockDivs += '<div id="startChar" class="block start"></div>'
                 x = colPos
+                y = rowPos
+
+                // Starting block position
+                currentPos = blueprint[9][0]
             }
 
             // Finish block / Create the blocks
             else if (blockType === 'F') {
                 blockDivs += '<div class="block finish"></div>'
-                y = rowPos
                 x = colPos
+                y = rowPos
+
+                // Finish block position
+                currentPos = blueprint[8][20]
             }
             // Normal block
             else {
@@ -137,3 +128,11 @@ const initMaze = function (blueprint) {
 // Initiate AKA create maze
 // Test with mapFromDemo for simplicity
 initMaze(mapFromDemo)
+
+currentPosition =
+
+    // Update the "top" style attribute of the startChar
+    document.getElementById("startChar").style.top = x + "px"
+
+// Update the "left" style attribute of the startChar
+// document.getElementById("startChar").style.left = posLeft + "px"

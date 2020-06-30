@@ -19,16 +19,6 @@ header {
     background-color: rgb(255, 150, 203);
     display: flex;
     flex-flow: column nowrap;
-    margin: 15px;
-}
-
-#startChar {
-   width: 50px;
-   height: 50px;
-   position: absolute;
-   background: gray;
-   left: 200px;
-   top: 200px;
 }
 
 .row {
@@ -48,10 +38,16 @@ header {
 .block.start {
     background-color: rgb(42, 42, 42);
     box-shadow: 4px 4px rgb(144, 144, 144);
-
 }
 
 .block.finish {
     background-color: rgb(204, 61, 61);
     box-shadow: 4px 4px rgb(144, 144, 144);
+}
+
+#startChar {
+    background-color: whitesmoke;
+    position: relative;
+    top: 0;
+    left: 0;
 }
