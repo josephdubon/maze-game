@@ -4,7 +4,7 @@ console.log("Get script-y wit it. Na-Na Na Na N-Na Na.")
 // Maze maps here
 
 // This map borrowed from the maze assessment map example in myKenzie
-const map = [
+const mapFromDemo = [
     "WWWWWWWWWWWWWWWWWWWWW",
     "W   W     W     W W W",
     "W W W WWW WWWWW W W W",

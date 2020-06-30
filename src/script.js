@@ -15,17 +15,30 @@ const initMaze = function (blueprint) {
 
     // Main for loop - rows
     for (let rowNum = 0; rowNum < blueprint.length; rowNum++) {
+
         // rowString will be an element from blueprint
         const rowString = blueprint[rowNum]
         let blockDivs = ''
+
         // Columns for loop
         for (let colNum = 0; colNum < rowString.length; colNum++) {
             const blockType = rowString[colNum]
+
             // If block type is a wall do something
             if (blockType === 'W') {
                 blockDivs += '<div class="block wall"></div>'
-            } else if (blockType === 'S') {
+            }
+
+            // Start block
+            else if (blockType === 'S') {
                 blockDivs += '<div class="block start"></div>'
+                y = rowNum
+                x = colNum
+            }
+
+            // Finish block
+            else if (blockType === 'F') {
+                blockDivs += '<div class="block finish"></div>'
                 y = rowNum
                 x = colNum
             } else {
@@ -39,4 +52,4 @@ const initMaze = function (blueprint) {
 }
 
 // Initiate AKA create maze
-initMaze(map)
+initMaze(mapFromDemo)
