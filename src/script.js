@@ -4,6 +4,8 @@
 // Main project structure and flow influenced by 
 // Randy 's demos and reference code. Thank you Randy.
 
+// Model view
+
 // Declare variables
 let x, y
 
@@ -13,43 +15,53 @@ const mainMazeEl = document.getElementById('maze')
 // Create main maze function
 const initMaze = function (blueprint) {
 
-    // Main for loop - rows
-    for (let rowNum = 0; rowNum < blueprint.length; rowNum++) {
+    // For loop - row
+    for (let rowPos = 0; rowPos < blueprint.length; rowPos++) {
 
         // rowString will be an element from blueprint
-        const rowString = blueprint[rowNum]
+        const rowString = blueprint[rowPos]
+
+        // Declare blockDivs outside for loops
         let blockDivs = ''
 
-        // Columns for loop
-        for (let colNum = 0; colNum < rowString.length; colNum++) {
-            const blockType = rowString[colNum]
+        // For loop - col
+        for (let colPos = 0; colPos < rowString.length; colPos++) {
+
+            const blockType = rowString[colPos]
+
+            // Test
+            // console.log(mapFromDemo[i])
 
             // If block type is a wall do something
             if (blockType === 'W') {
                 blockDivs += '<div class="block wall"></div>'
             }
 
-            // Start block
+            // Start block / loop through each row
             else if (blockType === 'S') {
                 blockDivs += '<div class="block start"></div>'
-                y = rowNum
-                x = colNum
+                y = rowPos
+                x = colPos
             }
 
-            // Finish block
+            // Finish block / Create the blocks
             else if (blockType === 'F') {
                 blockDivs += '<div class="block finish"></div>'
-                y = rowNum
-                x = colNum
-            } else {
+                y = rowPos
+                x = colPos
+            }
+            // Normal block
+            else {
                 blockDivs += '<div class="block"></div>'
             }
         }
 
-        // Output to index.html as a real thing - rows
+        // Output to index.html as a 'real' thing - rows
+        // Using innerHTML replaces everything in maze html area with += stuff
         mainMazeEl.innerHTML += '<div class="row">' + blockDivs + '</div>'
     }
 }
 
 // Initiate AKA create maze
+// Test with mapFromDemo for simplicity
 initMaze(mapFromDemo)
