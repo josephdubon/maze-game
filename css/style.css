@@ -33,7 +33,7 @@ header {
 
 .block.wall {
     background-color: rgb(0, 204, 255);
-    box-shadow: 4px 4px rgb(144, 144, 144);
+    box-shadow: 4px 4px rgb(64, 240, 240);
 }
 
 .block.start {
