@@ -6,8 +6,80 @@
 
 // Model view
 
+// Tell me what key was pushed and then make that the function
+document.onkeydown = logKey
+
 // Declare variables
-let x, y
+let x, y, posTop, posLeft
+
+// Start keyboard arrow keys code
+
+// Give pos some data
+posTop = 200
+posLeft = 200
+
+function logKey(e) {
+    // Test
+    // log.textContent += ` ${e.code}`
+    console.log(e.keyCode)
+
+    // Add gaurd clause for walls and barrier concept 
+
+    // CODE HERE MAN!
+
+    // let ArrowDown key add 10 to the posTop variable
+    if (e.keyCode === 40) {
+        // Test
+        console.log("arrow down")
+        posTop = posTop + 10
+    }
+    // let ArrowUp key remove 10 to the posTop variable
+    else if (e.keyCode === 38) {
+        // Test
+        console.log("arrow up")
+        posTop = posTop - 10
+    }
+    // let ArrowLeft key add 10 to the posLeft variable
+    else if (e.keyCode === 37) {
+        // Test
+        console.log("arrow left")
+        posLeft = posLeft - 10
+    }
+    // let ArrowRight key remove 10 to the posTop variable
+    else if (e.keyCode === 39) {
+        // Test
+        console.log("arrow right")
+        posLeft = posLeft + 10
+    }
+
+    // Update the "top" style attribute of the startChar
+    document.getElementById("startChar").style.top = posTop + "px"
+
+    // Update the "left" style attribute of the startChar
+    document.getElementById("startChar").style.left = posLeft + "px"
+
+}
+
+
+// Update the posTop style attribute of startChar
+document.getElementById("startChar").style.top = posTop + "px"
+// Update the left style attribute of startChar
+document.getElementById("startChar").style.left = posLeft + "px"
+
+
+// End keyboard arrow keys code
+
+
+// Maze ASCII intro from 
+// https://ascii.co.uk/art/maze
+
+// 88,dPYba,,adPYba,  ,adPPYYba, 888888888  ,adPPYba,  
+// 88P'   "88"    "8a ""     `Y8      a8P" a8P_____88  
+// 88      88      88 ,adPPPPP88   ,d8P'   8PP"""""""  
+// 88      88      88 88,    ,88 ,d8"      "8b,   ,aa  
+// 88      88      88 `"8bbdP"Y8 888888888  `"Ybbd8"'  
+
+// MAZE CODE STARTS HERE!!
 
 // Declare maze and DOM reference point for the maze in index.html
 const mainMazeEl = document.getElementById('maze')

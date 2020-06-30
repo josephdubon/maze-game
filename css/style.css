@@ -22,6 +22,15 @@ header {
     margin: 15px;
 }
 
+#startChar {
+   width: 50px;
+   height: 50px;
+   position: absolute;
+   background: gray;
+   left: 200px;
+   top: 200px;
+}
+
 .row {
     display: flex;
     flex-grow: 1;
