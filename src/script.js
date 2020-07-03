@@ -1,20 +1,20 @@
-const map = [
-    "WWWWWWWWWWWWWWWWWWWWW",
-    "W   W     W     W W W",
-    "W W W WWW WWWWW W W W",
-    "W W W   W     W W   W",
-    "W WWWWWWW W WWW W W W",
-    "W         W     W W W",
-    "W WWW WWWWW WWWWW W W",
-    "W W   W   W W     W W",
-    "W WWWWW W W W WWW W F",
-    "S     W W W W W W WWW",
-    "WWWWW W W W W W W W W",
-    "W     W W W   W W W W",
-    "W WWWWWWW WWWWW W W W",
-    "W       W       W   W",
-    "WWWWWWWWWWWWWWWWWWWWW",
-];
+// Test connection to index.html
+console.log("Get script-y wit it. Na-Na Na Na N-Na Na.")
+
+// Maze maps here AKA 'models'
+
+// Maze ASCII intro from 
+// https://ascii.co.uk/art/maze
+
+// 88,dPYba,,adPYba,  ,adPPYYba, 888888888  ,adPPYba,  
+// 88P'   "88"    "8a ""     `Y8      a8P" a8P_____88  
+// 88      88      88 ,adPPPPP88   ,d8P'   8PP"""""""  
+// 88      88      88 88,    ,88 ,d8"      "8b,   ,aa  
+// 88      88      88 `"8bbdP"Y8 888888888  `"Ybbd8"'  
+
+// More maps in maze.js
+// Change map value to test new mazes
+const map = mapFromDemo
 
 // Main function, create game grid
 const displayBlock = function (blockChar, rowDiv, player) {
@@ -105,12 +105,6 @@ function finishMaze() {
     // Finish position
     if (map[playerRow][playerColumn] === "F") {
         // Open new window
-        var myWindow = window.open("", "", "width=200, height=50");
-        myWindow.document.write("<p>Congratulations, you have completed the maze!</p>");
-        // Close window after a short moment
-        setTimeout(function () {
-            myWindow.close()
-        }, 2000);
-        location.reload()
+        document.querySelector("#maze").innerHTML = "<p>Congratulations, you have completed the maze!</p>"
     }
 }
