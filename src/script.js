@@ -1,126 +1,116 @@
-// Test connection to index.html
-// console.log("Get script-y wit it. Na-Na Na Na N-Na Na.")
+const map = [
+    "WWWWWWWWWWWWWWWWWWWWW",
+    "W   W     W     W W W",
+    "W W W WWW WWWWW W W W",
+    "W W W   W     W W   W",
+    "W WWWWWWW W WWW W W W",
+    "W         W     W W W",
+    "W WWW WWWWW WWWWW W W",
+    "W W   W   W W     W W",
+    "W WWWWW W W W WWW W F",
+    "S     W W W W W W WWW",
+    "WWWWW W W W W W W W W",
+    "W     W W W   W W W W",
+    "W WWWWWWW WWWWW W W W",
+    "W       W       W   W",
+    "WWWWWWWWWWWWWWWWWWWWW",
+];
 
-// Main project structure and flow influenced by 
-// Randy 's demos and reference code. Thank you Randy.
+// Main function, create game grid
+const displayBlock = function (blockChar, rowDiv, player) {
+    let blockDiv = document.createElement("div")
+    blockDiv.classList.add("block")
+    // Create walls
+    if (blockChar === "W") {
+        blockDiv.classList.add("wall")
+    }
+    // Create floor 
+    else if (blockChar === " ") {
+        blockDiv.classList.add("floor")
+    } else if (blockChar === "S") {
+        // Create start
+        blockDiv.classList.add("start")
+        blockDiv.id = "start"
+    } else if
+    // Create finish 
+    (blockChar === "F") {
+        blockDiv.classList.add("finish")
+        blockDiv.id = "finish"
+    }
+    // Output
+    rowDiv.appendChild(blockDiv)
+}
 
-// Maze ASCII intro from 
-// https://ascii.co.uk/art/maze
+// Get maze output area
+const displayRow = function (rowStr, index) {
+    // Create and display a row div
+    const maze = document.querySelector("#maze")
+    let rowDiv = document.createElement("div")
+    maze.appendChild(rowDiv)
+    for (let columnNum = 0; columnNum < rowStr.length; columnNum++) {
+        displayBlock(rowStr.charAt(columnNum), rowDiv)
+    }
+}
+// Output
+map.forEach(displayRow)
+let startSpace = document.getElementById("start");
+player.id = "player"
+// Start position clear
+startSpace.appendChild(player);
+let playerTop = 0;
+let playerLeft = 0;
+let playerActive = document.getElementById("player");
+let playerRow = 9;
+let playerColumn = 0;
 
-// 88,dPYba,,adPYba,  ,adPPYYba, 888888888  ,adPPYba,  
-// 88P'   "88"    "8a ""     `Y8      a8P" a8P_____88  
-// 88      88      88 ,adPPPPP88   ,d8P'   8PP"""""""  
-// 88      88      88 88,    ,88 ,d8"      "8b,   ,aa  
-// 88      88      88 `"8bbdP"Y8 888888888  `"Ybbd8"'  
-
-// MAZE CODE STARTS HERE!!
-
-// Declare maze and DOM reference point for the maze in index.html
-const mainMazeEl = document.getElementById('maze')
-
-// Choose maze/map from maze.js
-const blueprint = mapFromDemo
-
-// Declare variables
-let x, y
-
-// Create main maze function
-const initMaze = function (blueprint) {
-
-    // For loop - row
-    for (let rowPos = 0; rowPos < blueprint.length; rowPos++) {
-
-        // rowString will be an element from blueprint
-        const rowString = blueprint[rowPos]
-
-        // Declare blockDivs outside for loops
-        let blockDivs = ''
-
-        // For loop - col
-        for (let colPos = 0; colPos < rowString.length; colPos++) {
-
-            const blockType = rowString[colPos]
-
-            // Test
-            // console.log(mapFromDemo[i])
-
-            // If block type is a wall do something
-            if (blockType === 'W') {
-                blockDivs += '<div class="block wall"></div>'
-            }
-
-            // Start block / loop through each row
-            else if (blockType === 'S') {
-                blockDivs += '<div id="startChar" class="block start"></div>'
-                x = colPos
-                y = rowPos
-            }
-
-            // Finish block / Create the blocks
-            else if (blockType === 'F') {
-                blockDivs += '<div class="block finish"></div>'
-                x = colPos
-                y = rowPos
-            }
-            // Normal block
-            else if (blockType === ' ') {
-                blockDivs += '<div class="block"></div>'
+// Event listener for keys
+document.addEventListener("keydown", (event) => {
+    // Left and right
+    if (event.keyCode === 37) {
+        // Don't run into a wall
+        if (map[playerRow][playerColumn - 1] !== "W") {
+            if (playerLeft > 0) {
+                playerLeft -= 20;
+                playerActive.style.left = playerLeft + "px";
+                playerColumn -= 1;
             }
         }
+    } else if (event.keyCode === 38) {
+        // Don't run into a wall
+        if (map[playerRow - 1][playerColumn] !== "W") {
+            playerTop -= 24;
+            playerActive.style.top = playerTop + "px";
+            playerRow -= 1;
+        }
+    } // Up and down
+    else if (event.keyCode === 39) {
+        // Don't run into a wall
+        if (map[playerRow][playerColumn + 1] !== "W") {
+            playerLeft += 20;
+            playerActive.style.left = playerLeft + "px";
+            playerColumn += 1;
+        }
+    } else if (event.keyCode === 40) {
+        // Don't run into a wall
+        if (map[playerRow + 1][playerColumn] !== "W") {
+            playerTop += 24;
+            playerActive.style.top = playerTop + "px";
+            playerRow += 1;
+        }
+    }
+    finishMaze()
+})
 
-        // Output to index.html as a 'real' thing - rows
-        // Using innerHTML replaces everything in maze html area with += stuff
-        mainMazeEl.innerHTML += '<div class="row">' + blockDivs + '</div>'
+function finishMaze() {
+    // Finish position
+    if (map[playerRow][playerColumn] === "F") {
+        // Open new window
+        var myWindow = window.open("", "", "width=200, height=50");
+        myWindow.document.write("<p>Congratulations, you have completed the maze!</p>");
+        // Close window after a short moment
+        setTimeout(function () {
+            myWindow.close()
+        }, 2000);
+        location.reload()
     }
 }
-
-// Initiate AKA create maze
-// Test with mapFromDemo for simplicity
-initMaze(mapFromDemo)
-
-// Tell me what key was pushed and then make that the function
-document.onkeydown = logKey
-
-// Start keyboard arrow keys code
-function logKey(e) {
-    // Test
-    // log.textContent += ` ${e.code}`
-    console.log(e.keyCode)
-
-    // let ArrowDown key add 10 to the x variable
-    if (e.keyCode === 40) {
-        // Test
-        console.log("arrow down")
-        x += 10
-        console.log(x)
-    }
-    // let ArrowUp key remove 10 to the x variable
-    else if (e.keyCode === 38) {
-        // Test
-        console.log("arrow up")
-        x += -10
-        // Test
-        console.log(x)
-    }
-    // let ArrowLeft key add 10 to the y variable
-    else if (e.keyCode === 37) {
-        // Test
-        console.log("arrow left")
-        y = y - 10
-        // Test
-        console.log(y)
-    }
-    // let ArrowRight key remove 10 to the y variable
-    else if (e.keyCode === 39) {
-        // Test
-        console.log("arrow right")
-        y = y + 10
-        // Test
-        console.log(y)
-    }
-    // Update attributes function
-    document.getElementById("startChar").style.top = x + "px"
-    document.getElementById("startChar").style.left = y + "px"
-}
-
-// End keyboard arrow keys code
