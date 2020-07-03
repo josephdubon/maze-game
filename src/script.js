@@ -18,10 +18,11 @@
 // Declare maze and DOM reference point for the maze in index.html
 const mainMazeEl = document.getElementById('maze')
 
+// Choose maze/map from maze.js
+const blueprint = mapFromDemo
+
 // Declare variables
 let x, y
-
-const blueprint = mapFromDemo
 
 // Create main maze function
 const initMaze = function (blueprint) {
